@@ -11,6 +11,7 @@ class Author(models.Model):
     image = models.ImageField(upload_to='images/Author', null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
     join_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
