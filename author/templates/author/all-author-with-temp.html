@@ -1,3 +1,4 @@
+{% load thumbnail %}
 {% load static %}
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -450,7 +451,13 @@
                         <div class="wn__team text-center">
                             <a href="{% url 'author-detail-with-temp' author.slug %}">
                                 <div class="thumb">
-                                    <img src="{% static 'images/about/team/2.jpg' %}" alt="Team images">
+                                    {% if author.image %}
+                                        {% thumbnail author.image "300x373" quality=80 format='PNG' crop="center" as img %}
+                                            <img src="{{ img.url }}" alt="">
+                                        {% endthumbnail %}
+                                    {% else %}
+                                        <img src="{% static 'images/about/team/2.jpg' %}" alt="Team images">
+                                    {% endif %}
                                 </div>
                                 <div class="content">
                                     <h4>{{ author }}</h4>

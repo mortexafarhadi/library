@@ -8,6 +8,7 @@ class Publisher(models.Model):
     address = models.TextField(null=True, blank=True)
     year_created = models.DateField(null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.title}"
