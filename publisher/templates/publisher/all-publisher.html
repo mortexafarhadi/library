@@ -451,7 +451,7 @@
                             <a href="{% url 'publisher-details' publisher.slug %}">
                                 <div class="thumb">
                                     {% if publisher.image %}
-                                        {% thumbnail publisher.image "300x373" quality=80 format='PNG' crop="center" as img %}
+                                        {% thumbnail publisher.image "300x373" quality=70 format='PNG' crop="center" as img %}
                                             <img src="{{ img.url }}" alt="">
                                         {% endthumbnail %}
                                     {% else %}

@@ -1,4 +1,5 @@
 from django.db import models
+from utils import text_convertor as tc
 
 
 class Author(models.Model):
@@ -12,6 +13,10 @@ class Author(models.Model):
     slug = models.SlugField(null=True, blank=True)
     join_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = tc.uniq_slugify_rplc_space_dot_at(self, f"{self.first_name}{self.last_name}")
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

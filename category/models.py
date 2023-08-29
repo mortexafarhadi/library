@@ -1,4 +1,5 @@
 from django.db import models
+from utils import text_convertor as tc
 
 
 class Category(models.Model):
@@ -7,6 +8,10 @@ class Category(models.Model):
     slug = models.SlugField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = tc.uniq_slugify_rplc_space_dot_at(self, self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

@@ -1,4 +1,5 @@
 from django.db import models
+from utils import text_convertor as tc
 
 
 class Publisher(models.Model):
@@ -11,6 +12,10 @@ class Publisher(models.Model):
     image = models.ImageField(upload_to='images/Publisher', null=True, blank=True)
     about = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = tc.uniq_slugify_rplc_space_dot_at(self, self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name}"

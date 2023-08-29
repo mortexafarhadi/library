@@ -15,7 +15,7 @@ def all_publishers(request):
 def publisher_details(request, slug):
     publisher = Publisher.objects.get(slug=slug)
     publisher_books = Book.objects.filter(publisher=publisher)
-    book_categories_list = publisher_books.values('category__title')
+    book_categories_list = publisher_books.values_list('category__title', flat=True)
 
     book_categories = []
 
