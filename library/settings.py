@@ -16,7 +16,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -26,6 +25,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,14 +38,18 @@ INSTALLED_APPS = [
     'jalali_date',
     # INTERNAL APPS
     'author',
+    'account',
     'category',
     'publisher',
     'book',
+    'order',
     'fake_data',
     'utils'
 ]
 
 ROOT_URLCONF = 'library.urls'
+
+AUTH_USER_MODEL = 'account.User'
 
 TEMPLATES = [
     {
@@ -68,7 +72,7 @@ WSGI_APPLICATION = 'library.wsgi.application'
 
 # default settings (optional)
 JALALI_DATE_DEFAULTS = {
-   'Strftime': {
+    'Strftime': {
         'date': '%y/%m/%d',
         'datetime': '%H:%M:%S _ %y/%m/%d',
     },

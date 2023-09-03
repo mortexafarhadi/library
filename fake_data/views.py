@@ -8,26 +8,25 @@ from publisher.models import Publisher
 
 
 def fake_author(request, count):
-    if request.method == 'GET':
-        fake = Faker()
-        fake_fa = Faker(locale='fa_IR')
-        if count is not None and count > 0:
-            for _ in range(count):
-                author = Author(
-                    first_name=fake.first_name(),
-                    last_name=fake.last_name(),
-                    email=fake.email(),
-                    birthday=fake.date(),
-                    bio=fake.text(),
-                    phone=fake.random_number(digits=11),
-                )
-                author.save()
+    fake = Faker()
+    fake_fa = Faker(locale='fa_IR')
+    if count is not None and count > 0:
+        for _ in range(count):
+            author = Author(
+                first_name=fake.first_name(),
+                last_name=fake.last_name(),
+                email=fake.email(),
+                birthday=fake.date(),
+                bio=fake.text(),
+                phone=fake.random_number(digits=11),
+            )
+            author.save()
 
-            context = {
-                "model": "Author",
-                "count": count,
-            }
-            return render(request, 'fake_data/fake-data.html', context)
+        context = {
+            "model": "Author",
+            "count": count,
+        }
+        return render(request, 'fake_data/fake-data.html', context)
 
 
 def fake_publisher(request, count):

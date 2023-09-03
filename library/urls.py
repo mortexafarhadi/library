@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('author/', include('author.urls')),
     path('publisher/', include('publisher.urls')),
+    path('order/', include('order.urls')),
     path('faker/', include('fake_data.urls')),
 ]
 if settings.DEBUG:
