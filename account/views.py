@@ -122,7 +122,7 @@ class RegisterView(View):
                                 username=user_email[:user_email.find('@')])
                 new_user.set_password(user_password)
                 new_user.save()
-                setSessionKey(request, 'email', user_email)
+                set_session_key(request, 'email', user_email)
                 sendMail('Activation Code', new_user.email, new_user, 'emails/activeAccount.html')
                 return redirect(reverse('account-activation'))
 
@@ -272,7 +272,7 @@ class AccountActivationView(View):
             user: User = User.objects.filter(email__iexact=email).first()
             if user is not None:
                 if user.activeCode == active_code:
-                    setSessionKey(request, 'email', '')
+                    set_session_key(request, 'email', '')
                     user.activeCode = random.randint(10000, 100000)
                     user.is_active = True
                     user.save()
