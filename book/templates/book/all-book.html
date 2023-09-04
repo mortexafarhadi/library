@@ -449,19 +449,19 @@
                     {#                {% for book in objects %}#}
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="wn__team text-center">
-                            <a href="{% url 'author-detail-with-temp' author.slug %}">
+                            <a href="{% url 'book_detail' book.slug %}">
                                 <div class="thumb">
-                                    {% if author.image %}
-                                        {% thumbnail author.image "300x373" quality=80 format='PNG' crop="center" as img %}
+                                    {% if book.image %}
+                                        {% thumbnail book.image "300x373" quality=80 format='PNG' crop="center" as img %}
                                             <img src="{{ img.url }}" alt="">
                                         {% endthumbnail %}
                                     {% else %}
-                                        <img src="{% static 'images/about/team/2.jpg' %}" alt="Team images">
+                                       <img src="{% static 'images/about/team/difult.jpg' %}" alt="Team images">
                                     {% endif %}
                                 </div>
                                 <div class="content">
-                                    <h4>{{ author }}</h4>
-                                    <p>{{ author.join_at }}</p>
+                                    <h4>{{ book }}</h4>
+                                    <p>{{ book.created_at }}</p>
                                     <ul class="team__social__net">
                                         <li><a href="#"><i class="icon-social-twitter icons"></i></a></li>
                                         <li><a href="#"><i class="icon-social-tumblr icons"></i></a></li>

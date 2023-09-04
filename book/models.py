@@ -1,5 +1,7 @@
 from django.db import models
 
+from utils import text_convertor as tc
+
 from author.models import Author
 from category.models import Category
 from publisher.models import Publisher
@@ -12,10 +14,26 @@ class Book(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     summary = models.TextField(blank=True, null=True)
+    discount = models.PositiveSmallIntegerField(default=0)
     page_count = models.PositiveSmallIntegerField(default=0)
     created_at = models.DateField(auto_now=True)
-    is_active = models.BooleanField(default=True)
+    slug = models.SlugField(null=True, blank=True)
     image = models.ImageField(upload_to='images/Book', blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = tc.uniq_slugify_rplc_space_dot_at(self, f"{self.title}{self.publisher}")
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
+
+    def price_finally(self):
+        price = self.price
+        discount = self.discount
+        if discount < 1:
+            return price
+        else:
+            x = (price * discount) / 100
+            result_price = price - x
+            return result_price
