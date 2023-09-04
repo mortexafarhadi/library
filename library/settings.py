@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'order',
     'fake_data',
     'utils',
+    'site_setting',
     # EXTERNAL APPS
     'sorl.thumbnail',
     'jalali_date',
