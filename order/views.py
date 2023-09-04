@@ -32,7 +32,7 @@ def add_product_to_order(request: HttpRequest):
             book = Book.objects.filter(id=book_id, is_active=True, is_delete=False).first()
             if book is not None:
                 current_order, created = Order.objects.get_or_create(user=user, is_paid=False)
-                current_order_detail: OrderDetail = current_order.orderdetail_set.filter(product=product).first()
+                current_order_detail: OrderDetail = current_order.orderdetail_set.filter(book=book).first()
                 if current_order_detail is not None:
                     current_order_detail.count += count
                     current_order_detail.save()

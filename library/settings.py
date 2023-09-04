@@ -33,18 +33,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # EXTERNAL APPS
-    'sorl.thumbnail',
-    'jalali_date',
     # INTERNAL APPS
-    'author',
     'account',
+    'author',
     'category',
     'publisher',
     'book',
     'order',
     'fake_data',
-    'utils'
+    'utils',
+    # EXTERNAL APPS
+    'sorl.thumbnail',
+    'jalali_date',
 ]
 
 ROOT_URLCONF = 'library.urls'
