@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'book',
     'order',
     'fake_data',
-    'utils'
+    'utils',
+    'site_setting',
+    
 ]
 
 ROOT_URLCONF = 'library.urls'
