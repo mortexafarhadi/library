@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title -->
+    <title>Core-Admin - Auth {% block Title %}base{% endblock %}</title>
+    {% include 'account/base/include/header_references.html' %}
+</head>
+
+<body class="body-bg-f8faff">
+<!-- Start Preloader Area -->
+<div class="preloader">
+    <img src="{% static 'panels/images/main-logo.svg' %}" alt="main-logo">
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Account Area -->
+<div class="account-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="account-content">
+                    {% block Content %}
+                        Auth Base
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Account Area -->
+
+<!-- Start Template Sidebar Area -->
+<div class="template-sidebar-area">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <a href="index.html">
+                <img src="{% static 'panels/images/main-logo.svg' %}" alt="main-logo">
+            </a>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul>
+                <li>
+                    <a class="default-btn btn active" target="_blank" href="#">
+                        Buy Now
+                    </a>
+                </li>
+                <li>
+                    <a class="default-btn btn" target="_blank"
+                       href="../../../themeforest.net/user/envytheme/portfolio.html">
+                        Our Portfolio
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Template Sidebar Area -->
+
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="ri-arrow-up-s-fill"></i>
+    <i class="ri-arrow-up-s-fill"></i>
+</div>
+<!-- End Go Top Area -->
+{% include 'account/base/include/footer_references.html' %}
+</body>
+
+<!-- Mirrored from templates.envytheme.com/joxi/default/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Jan 2023 19:43:28 GMT -->
+</html>

@@ -1,0 +1,48 @@
+{% extends 'account/base/layout.html' %}
+{% load static %}
+{% block Content %}
+    <div class="account-header">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'panels/images/main-logo.svg' %}" alt="main-logo">
+        </a>
+        <h3>Login</h3>
+    </div>
+
+    <form class="account-wrap">
+        <div class="form-group mb-24 icon">
+            <input type="email" class="form-control" placeholder="Email">
+            <img src="{% static 'panels/images/icon/sms.svg' %}" alt="sms">
+        </div>
+        <div class="form-group mb-24 icon">
+            <input type="password" class="form-control" placeholder="Password">
+            <img src="{% static 'panels/images/icon/key.svg' %}" alt="key">
+        </div>
+        <div class="form-group mb-24">
+            <a href="{% url 'forget-pass' %}" class="forgot">Forgot Password?</a>
+        </div>
+        <div class="form-group mb-24">
+            <button type="submit" class="default-btn">Log In</button>
+        </div>
+        <div class="form-group mb-24 text-center">
+            <p class="account">Not A Member? <a href="{% url 'register' %}">Create An Account</a></p>
+        </div>
+    </form>
+
+    <ul class="account-social-link">
+        <li>
+            <a href="https://www.google.com/" target="_blank">
+                <i class='bx bxl-google'></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.facebook.com/" target="_blank">
+                <i class='bx bxl-facebook'></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.twitter.com/" target="_blank">
+                <i class='bx bxl-twitter'></i>
+            </a>
+        </li>
+    </ul>
+{% endblock %}

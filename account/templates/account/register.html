@@ -1,0 +1,57 @@
+{% extends 'account/base/layout.html' %}
+{% load static %}
+{% block Content %}
+    <div class="account-header">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'panels/images/main-logo.svg' %}" alt="main-logo">
+        </a>
+        <h3>Registration</h3>
+    </div>
+
+    <form class="account-wrap">
+        <div class="form-group mb-24 icon">
+            <input type="text" class="form-control" placeholder="Email">
+            <img src="{% static 'panels/images/icon/user-square.svg' %}" alt="user-square">
+        </div>
+        <div class="form-group mb-24 icon">
+            <input type="email" class="form-control" placeholder="Email">
+            <img src="{% static 'panels/images/icon/sms.svg' %}" alt="sms">
+        </div>
+        <div class="form-group mb-24 icon">
+            <input type="password" class="form-control" placeholder="Password">
+            <img src="{% static 'panels/images/icon/key.svg' %}" alt="key">
+        </div>
+        <div class="form-group mb-24">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    I agree <a href="terms.html">Terms & Policy</a>
+                </label>
+            </div>
+        </div>
+        <div class="form-group mb-24">
+            <button type="submit" class="default-btn">Registration</button>
+        </div>
+        <div class="form-group mb-24">
+            <p class="account">Already Have An Account? <a href="{% url 'login' %}">Log In</a></p>
+        </div>
+    </form>
+
+    <ul class="account-social-link">
+        <li>
+            <a href="https://www.google.com/" target="_blank">
+                <i class='bx bxl-google'></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.facebook.com/" target="_blank">
+                <i class='bx bxl-facebook'></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.twitter.com/" target="_blank">
+                <i class='bx bxl-twitter'></i>
+            </a>
+        </li>
+    </ul>
+{% endblock %}
