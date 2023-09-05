@@ -8,7 +8,7 @@
 *.pyc
 __pycache__/
 # migrations/
-000*.py
+00*.py
 # migrations/
 local_settings.py
 db.sqlite3
