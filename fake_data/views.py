@@ -1,3 +1,7 @@
+import os
+from io import BytesIO
+from django.core.files import File
+from urllib.request import urlopen
 from django.shortcuts import render
 from faker import Faker
 
@@ -10,8 +14,13 @@ from publisher.models import Publisher
 def fake_author(request, count):
     fake = Faker()
     fake_fa = Faker(locale='fa_IR')
+    url = 'https://picsum.photos/256/256'
+
     if count is not None and count > 0:
         for _ in range(count):
+            response = urlopen(url)
+            image_content = BytesIO(response.read())
+            filename = os.path.basename(url)
             author = Author(
                 first_name=fake.first_name(),
                 last_name=fake.last_name(),
@@ -20,6 +29,7 @@ def fake_author(request, count):
                 bio=fake.text(),
                 phone=fake.random_number(digits=11),
             )
+            author.image.save(filename, File(image_content), save=True)
             author.save()
 
         context = {
@@ -33,8 +43,13 @@ def fake_publisher(request, count):
     if request.method == 'GET':
         fake = Faker()
         fake_fa = Faker(locale='fa_IR')
+        url = 'https://picsum.photos/256/256'
+
         if count is not None and count > 0:
             for _ in range(count):
+                response = urlopen(url)
+                image_content = BytesIO(response.read())
+                filename = os.path.basename(url)
                 publisher = Publisher(
                     name=fake.name(),
                     email=fake.email(),
@@ -43,6 +58,7 @@ def fake_publisher(request, count):
                     year_created=fake.date(),
                     about=fake.text()
                 )
+                publisher.image.save(filename, File(image_content), save=True)
                 publisher.save()
 
             context = {
@@ -76,7 +92,12 @@ def fake_book(request, count):
     if request.method == 'GET':
         fake = Faker()
         fake_fa = Faker(locale='fa_IR')
+        url = 'https://picsum.photos/256/256'
+
         if count is not None and count > 0:
+            response = urlopen(url)
+            image_content = BytesIO(response.read())
+            filename = os.path.basename(url)
             author_ids = Author.objects.filter(is_active=True).values_list('id', flat=True)
             publisher_ids = Publisher.objects.filter(is_active=True).values_list('id', flat=True)
             category_ids = Category.objects.filter(is_active=True).values_list('id', flat=True)
@@ -95,6 +116,7 @@ def fake_book(request, count):
                     page_count=fake.pyint(min_value=50, max_value=2000, step=1),
                     created_at=fake.date(),
                 )
+                book.image.save(filename, File(image_content), save=True)
                 book.save()
 
             context = {
