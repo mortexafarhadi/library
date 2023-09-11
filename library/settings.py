@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'site_setting',
     # EXTERNAL APPS
     'sorl.thumbnail',
+    'django_render_partial',
     'jalali_date',
 ]
 
