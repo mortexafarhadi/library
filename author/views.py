@@ -3,10 +3,12 @@ from django.shortcuts import render
 
 from author.models import Author
 from book.models import Book
+from site_setting.models import HeaderLink
 
 
 def all_author(request):
     authors = Author.objects.all()
+
     context = {
         'authors': authors
     }
@@ -15,9 +17,12 @@ def all_author(request):
 
 def all_author_with_template(request):
     authors = Author.objects.all()
+
+    header_links = HeaderLink.objects.all()
     context = {
         'title': "Authors",
         'authors': authors,
+        "header_links": header_links,
         'footer_description': "salam maryam"
         # 'objects': authors
     }
