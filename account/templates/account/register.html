@@ -8,17 +8,18 @@
         <h3>Registration</h3>
     </div>
 
-    <form class="account-wrap">
+    <form class="account-wrap" method="post">
+        {% csrf_token %}
         <div class="form-group mb-24 icon">
-            <input type="text" class="form-control" placeholder="Email">
+            {{ form.email }}
             <img src="{% static 'panels/images/icon/user-square.svg' %}" alt="user-square">
         </div>
         <div class="form-group mb-24 icon">
-            <input type="email" class="form-control" placeholder="Email">
+            {{ form.password }}
             <img src="{% static 'panels/images/icon/sms.svg' %}" alt="sms">
         </div>
         <div class="form-group mb-24 icon">
-            <input type="password" class="form-control" placeholder="Password">
+            {{ form.confirmPassword }}
             <img src="{% static 'panels/images/icon/key.svg' %}" alt="key">
         </div>
         <div class="form-group mb-24">

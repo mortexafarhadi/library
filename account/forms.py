@@ -18,15 +18,15 @@ error_password_confirmPassword_not_correct_fa = errors_fa.password_confirmPasswo
 
 class RegisterForm(forms.Form):
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": Email}),
+        widget=forms.EmailInput(attrs={"placeholder": Email, "class": "form-control"}),
         validators=[
             validators.EmailValidator,
         ])
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": Password})
+        widget=forms.PasswordInput(attrs={"placeholder": Password, "class": "form-control"}),
     )
     confirmPassword = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": ConfirmPassword})
+        widget=forms.PasswordInput(attrs={"placeholder": ConfirmPassword, "class": "form-control"}),
     )
 
     # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(),required=True)
@@ -43,15 +43,15 @@ class RegisterForm(forms.Form):
 
 class RegisterForm_fa(forms.Form):
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": Email_fa}),
+        widget=forms.EmailInput(attrs={"placeholder": Email_fa, "class": "form-control"}),
         validators=[
             validators.EmailValidator,
         ])
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": Password_fa})
+        widget=forms.PasswordInput(attrs={"placeholder": Password_fa, "class": "form-control"}),
     )
     confirmPassword = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": ConfirmPassword_fa})
+        widget=forms.PasswordInput(attrs={"placeholder": ConfirmPassword_fa, "class": "form-control"}),
     )
 
     # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(), required=True)
@@ -68,33 +68,33 @@ class RegisterForm_fa(forms.Form):
 
 class LoginForm(forms.Form):
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": Email}),
+        widget=forms.EmailInput(attrs={"placeholder": "please enter your email", "class": "form-control"}),
         validators=[
             validators.EmailValidator,
         ]
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": Password})
+        widget=forms.PasswordInput(attrs={"placeholder": Password, "class": "form-control"}),
     )
     # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(), required=True)
 
 
 class LoginForm_fa(forms.Form):
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": Email_fa}),
+        widget=forms.EmailInput(attrs={"placeholder": Email_fa, "class": "form-control"}),
         validators=[
             validators.EmailValidator,
         ]
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": Password_fa})
+        widget=forms.PasswordInput(attrs={"placeholder": Password_fa, "class": "form-control"}),
     )
     # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(), required=True)
 
 
 class ForgetPassForm(forms.Form):
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": Email}),
+        widget=forms.EmailInput(attrs={"placeholder": Email, "class": "form-control"}),
         validators=[
             validators.EmailValidator,
         ]
@@ -104,7 +104,7 @@ class ForgetPassForm(forms.Form):
 
 class ForgetPassForm_fa(forms.Form):
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": Email_fa}),
+        widget=forms.EmailInput(attrs={"placeholder": Email_fa, "class": "form-control"}),
         validators=[
             validators.EmailValidator,
         ]
@@ -114,10 +114,10 @@ class ForgetPassForm_fa(forms.Form):
 
 class ResetPasswordForm(forms.Form):
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": Password})
+        widget=forms.PasswordInput(attrs={"placeholder": Password, "class": "form-control"}),
     )
     confirmPassword = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": ConfirmPassword})
+        widget=forms.PasswordInput(attrs={"placeholder": ConfirmPassword, "class": "form-control"}),
     )
 
     # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(), required=True)
@@ -134,10 +134,10 @@ class ResetPasswordForm(forms.Form):
 
 class ResetPasswordForm_fa(forms.Form):
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": Password_fa})
+        widget=forms.PasswordInput(attrs={"placeholder": Password_fa, "class": "form-control"}),
     )
     confirmPassword = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": ConfirmPassword_fa})
+        widget=forms.PasswordInput(attrs={"placeholder": ConfirmPassword_fa, "class": "form-control"}),
     )
 
     # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(), required=True)
@@ -153,7 +153,7 @@ class ResetPasswordForm_fa(forms.Form):
 
 
 class AccountActivationWithEmailForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": Email}),
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": Email, "class": "form-control"}),
                              validators=[validators.EmailValidator])
     num1 = forms.CharField(max_length=1, widget=forms.NumberInput(attrs={'min': 0, 'max': 9}))
     num2 = forms.CharField(max_length=1, widget=forms.NumberInput(attrs={'min': 0, 'max': 9}))
@@ -164,7 +164,7 @@ class AccountActivationWithEmailForm(forms.Form):
 
 
 class AccountActivationWithEmailForm_fa(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": Email_fa}),
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": Email_fa, "class": "form-control"}),
                              validators=[validators.EmailValidator])
     num1 = forms.CharField(max_length=1, widget=forms.NumberInput(attrs={'min': 0, 'max': 9}))
     num2 = forms.CharField(max_length=1, widget=forms.NumberInput(attrs={'min': 0, 'max': 9}))

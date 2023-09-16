@@ -20,64 +20,40 @@ from .forms import LoginForm, RegisterForm, ResetPasswordForm, \
 class LoginView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect(reverse('profile'))
+            return redirect(reverse('index'))
+            # return redirect(reverse('profile'))
         else:
-            lang, language = get_language_with_status(request)
-            if lang == 'fa':
-                login_form = LoginForm_fa()
-            else:
-                login_form = LoginForm()
+            login_form = LoginForm()
             context = {
                 'form': login_form,
-                'dic': language.login,
-                'dic_base': language.base,
-                'tempStyle': "contact",
             }
             return render(request, 'account/login.html', context)
 
     def post(self, request):
-        lang, language = get_language_with_status(request)
-        if lang == 'fa':
-            login_form = LoginForm_fa(request.POST)
-        else:
-            login_form = LoginForm(request.POST)
+        login_form = LoginForm(request.POST)
 
         if not login_form.is_valid():
-            if lang == 'fa':
-                login_form.add_error('email', errors_fa.enter_the_information_correctly)
-            else:
-                login_form.add_error('email', errors_en.enter_the_information_correctly)
+            login_form.add_error('email', errors_en.enter_the_information_correctly)
         else:
             user_email = login_form.cleaned_data.get('email')
             user_pass = login_form.cleaned_data.get('password')
             user: User = User.objects.filter(email__iexact=user_email).first()
             if user is None:
-                if lang == 'fa':
-                    login_form.add_error('email', errors_fa.the_email_or_password_is_incorrect)
-                else:
-                    login_form.add_error('email', errors_en.the_email_or_password_is_incorrect)
+                login_form.add_error('email', errors_en.the_email_or_password_is_incorrect)
             else:
                 if not user.is_active:
-                    if lang == 'fa':
-                        login_form.add_error('email', errors_fa.your_account_is_not_active)
-                    else:
-                        login_form.add_error('email', errors_en.your_account_is_not_active)
+                    login_form.add_error('email', errors_en.your_account_is_not_active)
                 else:
                     is_password_correct = user.check_password(user_pass)
                     if not is_password_correct:
-                        if lang == 'fa':
-                            login_form.add_error('email', errors_fa.the_email_or_password_is_incorrect)
-                        else:
-                            login_form.add_error('email', errors_en.the_email_or_password_is_incorrect)
+                        login_form.add_error('email', errors_en.the_email_or_password_is_incorrect)
                     else:
                         login(request, user)
-                        return redirect(reverse('profile'))
+                        return redirect(reverse('index'))
+                        # return redirect(reverse('profile'))
 
         context = {
             'form': login_form,
-            'dic': language.login,
-            'dic_base': language.base,
-            'tempStyle': "contact",
         }
         return render(request, 'account/login.html', context)
 
@@ -85,7 +61,8 @@ class LoginView(View):
 class RegisterView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect(reverse('profile'))
+            return redirect(reverse('index'))
+            # return redirect(reverse('profile'))
         else:
             lang, language = get_language_with_status(request)
             if lang == 'fa':
@@ -116,15 +93,12 @@ class RegisterView(View):
                     register_form.add_error('email', errors_en.this_email_has_already_been_registered)
             else:
                 user_password = register_form.cleaned_data.get('password')
-                new_user = User(email=user_email, activeCode=random.randint(10000, 100000),
-                                resetPasswordLink=get_random_string(100),
+                new_user = User(email=user_email,
                                 is_active=False,
-                                username=user_email[:user_email.find('@')])
+                                username=user_email)
                 new_user.set_password(user_password)
                 new_user.save()
-                set_session_key(request, 'email', user_email)
-                sendMail('Activation Code', new_user.email, new_user, 'emails/activeAccount.html')
-                return redirect(reverse('account-activation'))
+                return redirect(reverse('login'))
 
         context = {
             'form': register_form,
